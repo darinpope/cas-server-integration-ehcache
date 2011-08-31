@@ -1,0 +1,22 @@
+<ehcache name="CAS.cacheManager">
+    <terracottaConfig url="${terracottaConfigUrl}" />
+
+    <cache name="ticketGrantingTicketsCache"
+        maxElementsInMemory="10000"
+        maxElementsOnDisk="1000000"
+        eternal="false"
+        timeToLiveSeconds="0"
+        timeToIdleSeconds="7201">
+        <terracotta consistency="eventual" concurrency="256" />
+    </cache>
+
+    <cache name="serviceTicketsCache"
+        maxElementsInMemory="10000"
+        maxElementsOnDisk="1000000"
+        eternal="false"
+        timeToLiveSeconds="300"
+        timeToIdleSeconds="0">
+        <terracotta consistency="eventual" concurrency="256" />
+    </cache>
+
+</ehcache>
