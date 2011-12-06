@@ -4,13 +4,17 @@ apply plugin: 'eclipse'
 
 casServerCoreVersion = "3.4.3.1"
 slf4jVersion = "1.6.1"
-ehcacheVersion = "2.4.4"
-terracottaCommonVersion = "3.2.0"
+ehcacheVersion = "2.4.6"
+toolkitVersion = "1.3"
+terracottaCommonVersion = "3.3.0"
 springVersion = "3.0.5.RELEASE"
 
 repositories {
-  mavenCentral()
-  mavenRepo urls: ["http://repo.terracotta.org/maven2"]
+    mavenLocal()
+    mavenCentral()
+    maven {
+        url "http://www.terracotta.org/download/reflector/releases"
+    }
 }
 
 test {
@@ -27,7 +31,7 @@ dependencies {
   compile "net.sf.ehcache:ehcache-core-ee:$ehcacheVersion"
   compile "log4j:log4j:1.2.16"
   runtime "net.sf.ehcache:ehcache-terracotta-ee:$ehcacheVersion"
-  runtime "org.terracotta:terracotta-toolkit-1.3-runtime-ee:$terracottaCommonVersion"
+  runtime "org.terracotta:terracotta-toolkit-$toolkitVersion-runtime-ee:$terracottaCommonVersion"
   runtime "org.slf4j:slf4j-api:$slf4jVersion"
   runtime "org.slf4j:slf4j-log4j12:$slf4jVersion"
   testCompile "org.springframework:spring-test:$springVersion"
@@ -35,6 +39,6 @@ dependencies {
 }
 
 task wrapper(type: Wrapper) {
-  gradleVersion = '1.0-milestone-3'
+  gradleVersion = '1.0-milestone-5'
 }
 
